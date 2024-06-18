@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,19 +53,44 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
 public class GameManager : Singleton<GameManager>
 {
+    public int scoreToCash = 0;
+
+    //  UI: 나중에 UIManager로 옮기기
     public Canvas alwaysOnDisplay;
     public Canvas HUDCanvas;
+    public Canvas SolitudeCanvas;
 
     public GameObject storePanel;
     public GameObject optionPanel;
     public GameObject InvenPanel;
+    public GameObject GameOverPanel;
+    public GameObject GameSuccessPanel;
+
 
     void Start()
     {
         alwaysOnDisplay.gameObject.SetActive(true);
         HUDCanvas.gameObject.SetActive(true);
+        SolitudeCanvas.gameObject.SetActive(true);
+        GameOverPanel.gameObject.SetActive(false);
+        GameSuccessPanel.gameObject.SetActive(false);
     }
+
+    void GetCash()
+    {
+        
+    }
+
     public void GameOver()
+    {
+        Debug.Log("GameOver");
+        Time.timeScale = 0f;
+  
+        HUDCanvas.gameObject.SetActive(false);
+        GameOverPanel.gameObject.SetActive(true);
+    }
+
+    public void NextStage()
     {
 
     }
